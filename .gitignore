@@ -1,0 +1,13 @@
+# فایل‌های سیستمی و محیطی
+.DS_Store
+node_modules/
+config/
+.env
+*.pyc
+__pycache__/
+db.sqlite3
+
+# فایل‌های بیلد
+dist/
+build/
+staticfiles/

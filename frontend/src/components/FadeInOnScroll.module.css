@@ -1,0 +1,18 @@
+/* src/components/FadeInOnScroll.module.css */
+
+.fadeInSection {
+  /* در حالت پیش‌فرض، المان‌ها کمی پایین‌تر و کاملاً شفاف هستند */
+  opacity: 0;
+  transform: translateY(20px);
+  /* 20 پیکسل پایین‌تر */
+
+  /* زمان انیمیشن: 0.8 ثانیه - این باعث می‌شود حس نرمی داشته باشد */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fadeInSection.visible {
+  /* وقتی کلاس visible اعمال می‌شود: */
+  opacity: 1;
+  transform: translateY(0);
+  /* به جای اصلی خود برمی‌گردد */
+}

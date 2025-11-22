@@ -1,0 +1,175 @@
+/* src/components/ResumeTemplate.module.css */
+
+/* در حالت عادی در سایت مخفی است */
+.resumePage {
+  display: none;
+}
+
+/* فقط در حالت پرینت اعمال می‌شود */
+@media print {
+  .resumePage {
+    display: flex;
+    /* نمایان کردن */
+    width: 210mm;
+    /* عرض استاندارد A4 */
+    min-height: 297mm;
+    /* ارتفاع استاندارد A4 */
+    background: white;
+    color: #333;
+    font-family: 'Vazirmatn', sans-serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    /* روی همه چیز */
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    /* یا ltr بر اساس نیاز */
+  }
+
+  /* سایدبار (رنگ تیره/متفاوت) */
+  .sidebar {
+    width: 30%;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    -webkit-print-color-adjust: exact;
+    /* چاپ رنگ پس‌زمینه */
+    print-color-adjust: exact;
+  }
+
+  /* محتوای اصلی */
+  .mainContent {
+    width: 70%;
+    padding: 30px;
+    background-color: white;
+  }
+
+  /* تصویر */
+  .profileImgContainer {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .profileImg {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+  }
+
+  /* تایپوگرافی */
+  .name {
+    font-size: 24pt;
+    margin: 0;
+    color: #2c3e50;
+    font-weight: 800;
+  }
+
+  .role {
+    font-size: 14pt;
+    color: #0077B6;
+    margin: 5px 0 20px 0;
+    text-transform: uppercase;
+  }
+
+  .bio {
+    font-size: 10pt;
+    line-height: 1.4;
+    color: #555;
+    margin-bottom: 30px;
+  }
+
+  .sidebarTitle {
+    font-size: 12pt;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    text-transform: uppercase;
+  }
+
+  .sectionTitle {
+    font-size: 14pt;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    color: #333;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* لیست‌ها */
+  .contactItem {
+    font-size: 9pt;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .skillList {
+    list-style: none;
+    padding: 0;
+  }
+
+  .skillList li {
+    font-size: 9pt;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  /* پروژه‌ها */
+  .projectItem {
+    margin-bottom: 15px;
+  }
+
+  .projectHeader h4 {
+    margin: 0;
+    font-size: 11pt;
+    font-weight: 700;
+  }
+
+  .projectDesc {
+    font-size: 9pt;
+    margin: 5px 0;
+    color: #666;
+  }
+
+  .techTags {
+    font-size: 8pt;
+    color: #0077B6;
+    font-weight: 600;
+  }
+
+  /* آمار */
+  .statsGrid {
+    display: flex;
+    gap: 20px;
+  }
+
+  .statItem {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #eee;
+  }
+
+  .statItem strong {
+    display: block;
+    font-size: 14pt;
+    color: #0077B6;
+  }
+
+  .statItem span {
+    font-size: 8pt;
+    color: #777;
+  }
+}

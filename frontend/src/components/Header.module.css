@@ -1,0 +1,205 @@
+/* src/components/Header.module.css */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: rgba(255, 255, 255, 0.8);
+  /* شیشه‌ای */
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+[data-theme='dark'] .header {
+  background: rgba(15, 22, 33, 0.8);
+  /* شیشه‌ای تاریک */
+}
+
+.headerContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo a {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo a:hover {
+  color: var(--color-primary);
+}
+
+.nav {
+  display: flex;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.navList a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navList a:hover {
+  color: var(--color-primary);
+}
+
+/* بخش کنترل‌ها (دکمه‌ها) */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.langBtn,
+.themeBtn,
+.hamburger {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.langBtn {
+  width: auto;
+  padding: 0 12px;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.langBtn:hover,
+.themeBtn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.hamburger {
+  display: none;
+  /* در دسکتاپ مخفی */
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+  .nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    background: var(--color-background);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    /* مخفی کردن منو */
+    transition: transform 0.3s ease-in-out;
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* وقتی زبان فارسی است جهت اسلاید فرق می‌کند */
+  :global(body[dir='rtl']) .nav {
+    transform: translateX(-100%);
+  }
+
+  .navOpen {
+    transform: translateX(0) !important;
+  }
+
+  .navList {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .navList a {
+    font-size: 1.2rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* استایل مشترک دکمه‌های کنترل */
+.controlBtn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.controlBtn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* استایل اختصاصی دکمه PDF */
+.pdfBtn {
+  background: rgba(220, 53, 69, 0.1);
+  /* قرمز کم‌رنگ */
+  color: #dc3545;
+  border-color: rgba(220, 53, 69, 0.3);
+  width: auto;
+  /* عرض متغیر */
+  padding: 0 12px;
+  gap: 8px;
+}
+
+.pdfBtn:hover {
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.pdfText {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* مخفی کردن متن PDF در موبایل */
+@media (max-width: 480px) {
+  .pdfText {
+    display: none;
+  }
+
+  .pdfBtn {
+    width: 40px;
+    padding: 0;
+  }
+}

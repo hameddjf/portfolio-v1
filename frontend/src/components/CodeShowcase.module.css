@@ -1,0 +1,188 @@
+/* src/components/CodeShowcase.module.css */
+
+.showcaseSection {
+  padding: 100px 0;
+  overflow: hidden;
+  /* جلوگیری از اسکرول افقی */
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--color-text-primary);
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--color-text-secondary);
+  margin-bottom: 80px;
+}
+
+.staggeredContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  /* فاصله زیاد بین کدها برای اسکرول جذاب */
+  position: relative;
+}
+
+/* خط اتصال (Timeline effect) - اختیاری */
+.staggeredContainer::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--color-border), transparent);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.codeBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+/* حالت چپ‌چین و راست‌چین */
+.left {
+  flex-direction: row;
+}
+
+.right {
+  flex-direction: row-reverse;
+}
+
+/* بخش توضیحات */
+.descriptionBox {
+  width: 300px;
+  text-align: center;
+  background: var(--color-background);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+.iconCircle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin: 0 auto 20px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.descriptionBox h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: var(--color-text-primary);
+}
+
+.descriptionBox p {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* پنجره کد */
+.codeWindow {
+  width: 600px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.codeWindow:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.6);
+}
+
+.windowHeader {
+  background: #252526;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dotRed,
+.dotYellow,
+.dotGreen {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dotRed {
+  background: #ff5f56;
+}
+
+.dotYellow {
+  background: #ffbd2e;
+}
+
+.dotGreen {
+  background: #27c93f;
+}
+
+.filename {
+  margin-left: 15px;
+  color: #888;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  flex-grow: 1;
+}
+
+.copyBtn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.copyBtn:hover {
+  color: #fff;
+}
+
+.codeBody {
+  padding: 15px;
+  direction: ltr;
+}
+
+/* ریسپانسیو */
+@media (max-width: 992px) {
+  .staggeredContainer::before {
+    display: none;
+  }
+
+  .codeBlock {
+    flex-direction: column !important;
+    /* همیشه عمودی در موبایل */
+    gap: 30px;
+  }
+
+  .codeWindow,
+  .descriptionBox {
+    width: 100%;
+    max-width: 100%;
+  }
+}

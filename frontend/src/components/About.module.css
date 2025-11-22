@@ -1,0 +1,119 @@
+/* src/components/About.module.css (استایل‌های جدید) */
+
+.aboutSection {
+  padding: 100px 0;
+  background-color: transparent;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.aboutContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* دو ستون مساوی */
+  gap: 60px;
+  align-items: flex-start;
+  /* محتوا از بالا شروع شود */
+}
+
+/* ستون تصویر */
+.imageColumn {
+  padding-top: 20px;
+}
+
+.aboutImage {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-large);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease;
+}
+
+.imageColumn:hover .aboutImage {
+  transform: translateY(-5px);
+  /* افکت hover ظریف */
+}
+
+/* ستون متن */
+.textColumn {
+  line-height: 1.8;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  /* برجسته شدن با رنگ اصلی */
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 10px;
+}
+
+.description {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 25px;
+  text-align: justify;
+}
+
+/* بخش آمار کلیدی */
+.statsGrid {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.statItem {
+  text-align: center;
+  flex: 1;
+}
+
+.statNumber {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  display: block;
+  line-height: 1.2;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  display: block;
+}
+
+/* ریسپانسیو */
+@media (max-width: 900px) {
+  .aboutContent {
+    grid-template-columns: 1fr;
+    /* تک ستونی شدن */
+    gap: 40px;
+  }
+
+  .imageColumn {
+    order: 1;
+    /* تصویر به بالای صفحه می‌رود */
+    padding-top: 0;
+  }
+
+  .textColumn {
+    order: 2;
+    /* متن به پایین می‌آید */
+  }
+
+  .statsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-around;
+  }
+}

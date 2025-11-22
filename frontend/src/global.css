@@ -1,0 +1,149 @@
+/* src/global.css (نسخه کامل با معماری Dark Mode) */
+
+/* 1. وارد کردن فونت (بدون تغییر) */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+
+/* 2. متغیرهای تم روشن (پیش‌فرض) */
+:root {
+  --font-family-main: 'Vazirmatn', sans-serif;
+
+  /* 👇 پالت رنگی (روشن) - فقط آبی و تنوع آن 👇 */
+  --color-primary: #0077B6;
+  /* آبی عمیق */
+  --color-primary-dark: #005A90;
+  --color-primary-light: rgba(0, 119, 182, 0.2);
+
+  /* حذف کامل رنگ‌های غیرمرتبط (نارنجی، سبز، زرد) */
+  --color-accent: #00A693;
+  /* 👈 رنگ ثانویه: فیروزه‌ای/آبی-سبز (مرتبط با آبی) */
+  --color-secondary-accent: #33CCCC;
+  /* 👈 رنگ سوم: آبی-سبز روشن‌تر */
+
+  --color-text-primary: #0A0A0A;
+  --color-text-secondary: #5B6673;
+
+  /* بوم اصلی: رنگ پایه آبی آسمانی بسیار کم‌رنگ */
+  --color-background: #F0F8FF;
+  --color-background-alt: #E5F2FF;
+
+  /* رنگ‌های خاص گرادیانت (همه در محدوده آبی/فیروزه‌ای) */
+  --color-gradient-light: #C0DEFF;
+  --color-gradient-vibrant: #A8DADC;
+  /* آبی-فیروزه‌ای روشن */
+  --color-gradient-extra: #DAE8F5;
+
+  --color-border: #BDD8F0;
+  /* 👈 مرزها برای هماهنگی با تم سبز */
+
+  /* اندازه‌ها و افکت‌ها بدون تغییر */
+  --header-height: 70px;
+  --container-width: 1200px;
+  --border-radius: 8px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition-fast: all 0.2s ease-in-out;
+}
+
+/* 3. متغیرهای تم تاریک */
+[data-theme='dark'] {
+  --color-primary: #5BC0DE;
+  --color-primary-dark: #2F9ACF;
+  --color-primary-light: rgba(91, 192, 222, 0.1);
+
+  --color-text-primary: #E6EEF4;
+  --color-text-secondary: #9BA4AE;
+
+  /* 👇 بوم اصلی Dark Mode: سربی/خاکستری کدر (فقط تنوع آبی و خاکستری) 👇 */
+  --color-background: #0F1621;
+  --color-background-alt: #1A2330;
+
+  /* رنگ‌های خاص گرادیانت (فقط خاکستری و آبی‌های کدر) */
+  --color-gradient-light: #2D3E50;
+  --color-gradient-vibrant: #1D5A6A;
+  --color-gradient-extra: #4B6587;
+
+  --color-border: #30363D;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* 4. Reset و تنظیمات پایه */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-main);
+  /* 👇 این مهم است: body شفاف می‌ماند تا پس‌زمینه انیمیشنی دیده شود */
+
+  background-color: transparent;
+  color: var(--color-text-primary);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: color 0.3s ease, background-color 0.3s ease;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+.container {
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+
+/* src/global.css - بخش Print */
+
+@media print {
+
+  /* 1. مخفی کردن تمام عناصر سایت */
+  body * {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+  }
+
+  /* 2. مخفی کردن هدر، فوتر و پس‌زمینه */
+  header,
+  footer,
+  .gradientBackground,
+  .screen-only {
+    display: none !important;
+  }
+
+  /* 3. نمایان کردن فقط کامپوننت رزومه */
+  #printable-resume,
+  #printable-resume * {
+    visibility: visible;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* 4. تنظیم جایگاه رزومه */
+  #printable-resume {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* تنظیمات کاغذ */
+  @page {
+    size: A4;
+    margin: 0;
+    /* حاشیه‌ها را از طریق CSS کامپوننت کنترل می‌کنیم */
+  }
+}

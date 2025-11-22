@@ -1,0 +1,268 @@
+/* src/components/Hero.module.css (نسخه کامل و بازطراحی شده - سطح Senior) */
+
+.heroSection {
+  padding-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* 1. والد اصلی برای Blobs */
+  /* overflow: hidden; */
+  /* 2. جلوگیری از بیرون زدن انیمیشن‌ها */
+  /* background-color: var(--color-background); */
+  /* پس‌زمینه سفید پایه */
+}
+
+/* پس‌زمینه‌های انتزاعی (Abstract Blobs)
+  اینها "روح" و "عمق" بصری را اضافه می‌کنند.
+*/
+.abstractBlob1 {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(0, 82, 204, 0.1), transparent 70%);
+  filter: blur(80px);
+  /* محو کردن بسیار زیاد */
+  top: -100px;
+  left: -150px;
+  z-index: 0;
+  animation: pulse 8s infinite alternate ease-in-out;
+}
+
+.abstractBlob2 {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(94, 108, 132, 0.1), transparent 70%);
+  filter: blur(80px);
+  bottom: -50px;
+  right: -100px;
+  z-index: 0;
+  animation: pulse 10s infinite alternate-reverse ease-in-out;
+}
+
+/* انیمیشن سوسو زدن برای Blobs */
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+
+  to {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* محتوای Hero
+  باید z-index بالاتری داشته باشد تا روی Blobs قرار گیرد.
+*/
+.heroContainer {
+  position: relative;
+  /* z-index: 2; */
+  /* بالاتر از Blobs (z-index: 0) */
+  width: 100%;
+}
+
+.heroContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  /* متن سهم بیشتری می‌برد */
+  gap: 60px;
+  align-items: center;
+}
+
+/* ستون متن */
+.textColumn {
+  /* این ستون انیمیشن Fade-in ورود را خواهد داشت */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s 0.2s forwards ease-out;
+  /* 0.2s تاخیر */
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.introText {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+/* استایل عنوان اصلی (H1)
+  این کلید راه‌حل "سنیور" است
+*/
+.mainTitle {
+  font-size: 3.2rem;
+  /* اندازه فونت اصلی و یکپارچه */
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  margin-bottom: 25px;
+  min-height: 130px;
+  /* جلوگیری از پرش صفحه هنگام تغییر متن انیمیشن */
+}
+
+/* استایل انیمیشن تایپ (SPAN)
+  اندازه و وزن را از H1 والد ارث می‌برد.
+*/
+.typingAnimation {
+  color: var(--color-primary);
+  /* فقط رنگ را تغییر می‌دهد */
+  /* افکت "Cursor" (مکان‌نما) انیمیشن */
+  border-right: 4px solid var(--color-primary);
+  animation: blink 0.7s infinite;
+}
+
+/* انیمیشن چشمک‌زن مکان‌نما */
+@keyframes blink {
+  0% {
+    border-right-color: var(--color-primary);
+  }
+
+  50% {
+    border-right-color: transparent;
+  }
+
+  100% {
+    border-right-color: var(--color-primary);
+  }
+}
+
+.description {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 35px;
+  max-width: 550px;
+  line-height: 1.8;
+}
+
+/* دکمه‌ها */
+.actionButtons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition-fast);
+  border: 2px solid transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btnPrimary {
+  background-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 82, 204, 0.2);
+}
+
+.btnPrimary:hover {
+  background-color: #003d99;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 82, 204, 0.3);
+}
+
+.btnSecondary {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-border);
+}
+
+.btnSecondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-3px);
+}
+
+/* ستون تصویر */
+.imageColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* انیمیشن ورود برای تصویر */
+  opacity: 0;
+  animation: fadeInUp 0.8s 0.4s forwards ease-out;
+  /* 0.4s تاخیر */
+}
+
+.avatarContainer {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--color-background-alt);
+  border: 8px solid var(--color-background);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: pulse 10s infinite alternate ease-in-out;
+  /* انیمیشن سوسو زدن ملایم */
+}
+
+.avatarContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- ریسپانسیوسازی (بسیار مهم) --- */
+@media (max-width: 992px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+    /* تک ستونی شدن */
+    text-align: center;
+    gap: 40px;
+  }
+
+  .textColumn {
+    order: 2;
+    /* متن پایین می‌آید */
+  }
+
+  .imageColumn {
+    order: 1;
+    /* تصویر بالا می‌آید */
+  }
+
+  .mainTitle {
+    font-size: 2.5rem;
+    /* کوچکتر شدن فونت در موبایل */
+    min-height: 100px;
+  }
+
+  .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .actionButtons {
+    justify-content: center;
+  }
+
+  .avatarContainer {
+    width: 280px;
+    height: 280px;
+  }
+
+  .abstractBlob1,
+  .abstractBlob2 {
+    /* کاهش اندازه Blobs در موبایل */
+    width: 300px;
+    height: 300px;
+    filter: blur(60px);
+  }
+}

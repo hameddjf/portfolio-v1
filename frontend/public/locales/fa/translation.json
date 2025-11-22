@@ -1,0 +1,129 @@
+{
+  "header": {
+    "title": "حامد مرادی / توسعه‌دهنده جنگو",
+    "nav": {
+      "about": "درباره من",
+      "services": "مهارت‌ها",
+      "projects": "پروژه‌ها",
+      "contact": "تماس"
+    }
+  },
+  "hero": {
+    "greeting": "سلام، من حامد مرادی هستم",
+    "title": "من یک",
+    "typing": [
+      "Django Developer",
+      "Backend Architect",
+      "Full Stack Engineer"
+    ],
+    "description": "متخصص در طراحی و پیاده‌سازی سیستم‌های قدرتمند و مقیاس‌پذیر وب.",
+    "ctaProjects": "مشاهده پروژه‌ها",
+    "ctaContact": "تماس با من"
+  },
+  "skills": {
+    "title": "تخصص‌های فنی",
+    "subtitle": "جعبه ابزار کامل برای توسعه محصول از صفر تا صد",
+    "categories": {
+      "backend": "Backend & Architecture",
+      "frontend": "Frontend & UI",
+      "devops": "DevOps & Tools"
+    }
+  },
+  "codeShowcase": {
+    "title": "معماری و کیفیت کد",
+    "subtitle": "نگاهی به زیر کاپوت: تمیزی کد، رعایت اصول SOLID و بهینه‌سازی",
+    "snippets": {
+      "frontend": {
+        "title": "کامپوننت‌نویسی مدرن",
+        "desc": "استفاده از انیمیشن‌ها و هوک‌های سفارشی React"
+      },
+      "backend": {
+        "title": "معماری ViewSet",
+        "desc": "بهینه‌سازی کوئری‌های ORM برای پرفورمنس بالا"
+      },
+      "database": {
+        "title": "مدل داده مقیاس‌پذیر",
+        "desc": "طراحی بهینه دیتابیس در PostgreSQL"
+      }
+    }
+  },
+  "projects": {
+    "title": "پروژه‌های منتخب",
+    "cta_details": "جزئیات",
+    "cta_link": "لینک",
+    "modal": {
+      "tech_title": "تکنولوژی‌ها",
+      "link_title": "مشاهده در گیت‌هاب"
+    },
+    "list": [
+      {
+        "id": 1,
+        "title": "سیستم مدیریت رویداد",
+        "shortDescription": "پلتفرم جامع رزرو و مدیریت رویداد با جنگو.",
+        "longDescription": "یک سیستم کامل...",
+        "technologies": [
+          "Django",
+          "React",
+          "PostgreSQL"
+        ],
+        "iconName": "faServer",
+        "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        "link": "#"
+      },
+      {
+        "id": 1,
+        "title": "سیستم مدیریت رویداد",
+        "shortDescription": "پلتفرم جامع رزرو و مدیریت رویداد با جنگو.",
+        "longDescription": "یک سیستم کامل...",
+        "technologies": [
+          "Django",
+          "React",
+          "PostgreSQL"
+        ],
+        "iconName": "faServer",
+        "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        "link": "#"
+      }
+    ]
+  },
+  "about": {
+    "title": "درباره من",
+    "subtitle": "توسعه‌دهنده عاشق چالش‌های پیچیده",
+    "desc1": "من یک توسعه‌دهنده فول‌استک هستم...",
+    "desc2": "تمرکز من بر امنیت و کارایی است...",
+    "stats": [
+      {
+        "label": "سال تجربه",
+        "value": "+۴"
+      },
+      {
+        "label": "پروژه موفق",
+        "value": "+۱۵"
+      },
+      {
+        "label": "کد لاین",
+        "value": "+۱۰۰k"
+      }
+    ]
+  },
+  "contact": {
+    "title": "تماس با من",
+    "subtitle": "برای شروع پروژه بعدی آماده‌اید؟",
+    "form": {
+      "name": "نام شما",
+      "email": "ایمیل شما",
+      "message": "پیام شما",
+      "submit": "ارسال پیام"
+    },
+    "info": {
+      "title": "راه‌های ارتباطی",
+      "desc": "همیشه مشتاق شنیدن ایده‌های جدید هستم.",
+      "emailLabel": "ایمیل",
+      "locationLabel": "موقعیت",
+      "locationValue": "تهران، ایران"
+    }
+  },
+  "footer": {
+    "copyright": "تمامی حقوق محفوظ است."
+  }
+}

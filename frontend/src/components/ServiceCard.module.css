@@ -1,0 +1,42 @@
+/* src/components/ServiceCard.module.css */
+
+.card {
+  background-color: var(--color-background);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  /* یک سایه ملایم و مدرن */
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+  height: 100%;
+  /* برای هماهنگی ارتفاع کارت‌ها در Grid */
+  border: 1px solid var(--color-border);
+
+  /* افکت تعاملی ظریف (Micro-interaction) */
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  /* کارت کمی بالا می‌آید */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary);
+  /* حاشیه با رنگ برند */
+}
+
+.icon {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
