@@ -29,7 +29,7 @@ function ProjectModal({ project, onClose }) {
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div
+        {/* <div
           className={styles.modalHeader}
           style={{ background: project.gradient }}
         >
@@ -39,9 +39,23 @@ function ProjectModal({ project, onClose }) {
           <button className={styles.closeBtn} onClick={onClose}>
             <FontAwesomeIcon icon={faTimes} />
           </button>
+        </div> */}
+        <button className={styles.closeBtn} onClick={onClose}>
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
+        {/* Body */}
+        <div className={styles.modalImageContainer}>
+          {project.image && (
+            <img
+              src={project.image}
+              alt={project.title}
+              className={styles.modalImage}
+            />
+          )}
+          <div className={styles.gradientOverlay}></div>
+          <h2 className={styles.modalTitleOverlay}>{project.title}</h2>
         </div>
 
-        {/* Body */}
         <div className={styles.modalBody}>
           <h2 className={styles.modalTitle}>{project.title}</h2>
           <p className={styles.modalDescription}>{project.longDescription}</p>

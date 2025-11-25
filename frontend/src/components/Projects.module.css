@@ -1,172 +1,177 @@
-/* src/components/Projects.module.css */
+/* src/components/ProjectCard.module.css */
 
-.projectsSection {
-  padding: 140px 0;
-  background: transparent;
+.projectCard {
   position: relative;
+  background: rgba(30, 41, 59, 0.7);
+  /* رنگ تیره و شیشه‌ای */
+  backdrop-filter: blur(12px);
+  /* افکت مات‌کننده پشت */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* افکت نئون هنگام هاور */
+.projectCard:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: var(--color-primary);
+  box-shadow:
+    0 20px 40px -10px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 119, 182, 0.2);
+  /* درخشش آبی */
+}
+
+/* بخش تصویر */
+.imageContainer {
+  width: 100%;
+  height: 200px;
+  /* ارتفاع ثابت */
+  background-color: #0f172a;
+  /* رنگ پس‌زمینه تیره برای فضای خالی */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.projectImage {
+  width: 100%;
+  height: 100%;
+  /* 👈 تغییر حیاتی: به جای cover از contain استفاده می‌کنیم */
+  /* این باعث میشه عکس دفرمه نشه و بریده هم نشه، بلکه کامل فیت بشه */
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.projectCard:hover .projectImage {
+  transform: scale(1.05);
+  /* زوم خیلی ملایم */
+}
+
+/* لایه گرادینت روی عکس (اگر عکس لود نشد یا برای زیبایی) */
+.gradientOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(30, 41, 59, 1) 100%);
+  opacity: 0.6;
+}
+
+/* محتوای کارت */
+.cardBody {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.projectTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #fff;
+  /* متن همیشه سفید در تم دارک/شیشه‌ای */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.projectDescription {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  /* خاکستری روشن */
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* افکت‌های دکوراتیو پس‌زمینه با انیمیشن */
-.projectsSection::before {
-  content: '';
-  position: absolute;
-  top: -40%;
-  left: -8%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle,
-      rgba(0, 119, 182, 0.12) 0%,
-      rgba(0, 166, 147, 0.08) 40%,
-      transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  animation: floatBlob1 20s ease-in-out infinite;
+/* تگ‌های تکنولوژی */
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 25px;
 }
 
-@keyframes floatBlob1 {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  33% {
-    transform: translate(50px, -50px) scale(1.1);
-  }
-
-  66% {
-    transform: translate(-30px, 30px) scale(0.95);
-  }
+.techBadge {
+  font-size: 0.75rem;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #61DAFB;
+  /* رنگ آبی ریکت */
+  border-radius: 50px;
+  border: 1px solid rgba(97, 218, 251, 0.2);
+  transition: all 0.3s ease;
 }
 
-.projectsSection::after {
-  content: '';
-  position: absolute;
-  bottom: -25%;
-  right: -3%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle,
-      rgba(91, 192, 222, 0.1) 0%,
-      rgba(51, 204, 204, 0.06) 40%,
-      transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  animation: floatBlob2 18s ease-in-out infinite;
+.projectCard:hover .techBadge {
+  background: rgba(97, 218, 251, 0.15);
+  border-color: #61DAFB;
+  box-shadow: 0 0 10px rgba(97, 218, 251, 0.2);
 }
 
-@keyframes floatBlob2 {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-  }
-
-  33% {
-    transform: translate(-40px, 40px) scale(1.15) rotate(120deg);
-  }
-
-  66% {
-    transform: translate(30px, -30px) scale(0.9) rotate(240deg);
-  }
+/* دکمه‌ها */
+.cardActions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
 }
 
-/* عنوان بخش با انیمیشن */
-.sectionTitle {
-  font-size: 3rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 80px;
-  color: var(--color-text-primary);
-  position: relative;
-  z-index: 1;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: titleEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+.btnDetails,
+.btnLink {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
-@keyframes titleEntrance {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.btnDetails {
+  background: linear-gradient(135deg, var(--color-primary), #00A693);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
 }
 
-.sectionTitle::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 5px;
-  background: linear-gradient(90deg, #0077B6 0%, #00A693 50%, #33CCCC 100%);
-  margin: 20px auto 0;
-  border-radius: 3px;
-  box-shadow: 0 3px 15px rgba(0, 119, 182, 0.4);
-  animation: underlineExpand 1s ease 0.6s forwards;
+.btnDetails:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 119, 182, 0.5);
 }
 
-@keyframes underlineExpand {
-  to {
-    width: 100px;
-  }
+.btnLink {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Grid پروژه‌ها */
+.btnLink:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* 👈 تغییر مهم: کاهش عرض از مقادیر بزرگ به 300px */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
-  max-width: var(--container-width);
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-/* ریسپانسیو */
-@media (max-width: 992px) {
-  .projectsSection {
-    padding: 100px 0;
-  }
-
-  .sectionTitle {
-    font-size: 2.4rem;
-    margin-bottom: 60px;
-  }
-
-  .projectsGrid {
-    grid-template-columns: 1fr;
-    gap: 35px;
-  }
-}
-
-@media (max-width: 768px) {
-  .projectsSection {
-    padding: 70px 0;
-  }
-
-  .sectionTitle {
-    font-size: 2rem;
-    margin-bottom: 50px;
-  }
-
-  .projectsGrid {
-    gap: 28px;
-  }
-}
-
-/* Dark Mode */
-[data-theme='dark'] .projectsSection::before {
-  background: radial-gradient(circle,
-      rgba(91, 192, 222, 0.08) 0%,
-      rgba(47, 154, 207, 0.05) 40%,
-      transparent 70%);
-}
-
-[data-theme='dark'] .projectsSection::after {
-  background: radial-gradient(circle,
-      rgba(47, 154, 207, 0.06) 0%,
-      rgba(91, 192, 222, 0.04) 40%,
-      transparent 70%);
+  width: 100%;
+  padding: 20px;
 }

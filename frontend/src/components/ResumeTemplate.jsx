@@ -1,4 +1,4 @@
-// src/components/ResumeTemplate.jsx
+// src/components/ResumeTemplate.jsx (نسخه اصلاح شده)
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,7 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 function ResumeTemplate({ memberData }) {
   const { t } = useTranslation();
+  // خواندن داده‌ها از فایل ترجمه
   const projects = t('projects.list', { returnObjects: true });
   const services = t('services.list', { returnObjects: true });
   const aboutStats = t('about.stats', { returnObjects: true });
@@ -28,49 +29,61 @@ function ResumeTemplate({ memberData }) {
         <div className={styles.contactSection}>
           <h3 className={styles.sidebarTitle}>تماس</h3>
           <div className={styles.contactItem}>
-            <FontAwesomeIcon icon={faEnvelope} /> <span>{memberData.socials?.email || 'email@example.com'}</span>
+            <FontAwesomeIcon icon={faEnvelope} /> <span>{memberData.email}</span>
+          </div>
+          {memberData.phone && (
+            <div className={styles.contactItem}>
+              <FontAwesomeIcon icon={faPhone} /> <span>{memberData.phone}</span>
+            </div>
+          )}
+          <div className={styles.contactItem}>
+            <FontAwesomeIcon icon={faMapMarkerAlt} /> <span>{memberData.location}</span>
           </div>
           <div className={styles.contactItem}>
-            <FontAwesomeIcon icon={faGlobe} /> <span>www.yourwebsite.com</span>
-          </div>
-          <div className={styles.contactItem}>
-            <FontAwesomeIcon icon={faMapMarkerAlt} /> <span>Tehran, Iran</span>
+            <FontAwesomeIcon icon={faGlobe} /> <span>{memberData.website}</span>
           </div>
         </div>
 
-        <div className={styles.skillSection}>
-          <h3 className={styles.sidebarTitle}>مهارت‌های کلیدی</h3>
-          <ul className={styles.skillList}>
-            {services.map((s, i) => (
-              <li key={i}>{s.title}</li>
+        {/* بخش خدمات */}
+        <section className={styles.section}>
+          <h3 className={styles.sectionTitle}>خدمات</h3>
+          <div className={styles.servicesList}>
+            {/* 👈 FIX: چک می‌کنیم که services یک آرایه باشد */}
+            {Array.isArray(services) && services.map((service, index) => (
+              <div key={index} className={styles.serviceItem}>
+                <h4>{service.title}</h4>
+                <p>{service.description}</p>
+              </div>
             ))}
-          </ul>
-        </div>
+          </div>
+        </section>
 
+        {/* بخش شبکه‌های اجتماعی */}
         <div className={styles.socialSection}>
-          <h3 className={styles.sidebarTitle}>شبکه‌های اجتماعی</h3>
-          <div className={styles.contactItem}>
-            <FontAwesomeIcon icon={faGithub} /> <span>github.com/username</span>
-          </div>
-          <div className={styles.contactItem}>
-            <FontAwesomeIcon icon={faLinkedin} /> <span>linkedin.com/in/user</span>
-          </div>
+          <a href={memberData.github} target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faGithub} /> Github
+          </a>
+          <a href={memberData.linkedin} target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
+          </a>
         </div>
       </aside>
 
-      {/* ستون سمت راست (بدنه اصلی) */}
+      {/* ستون سمت راست (محتوای اصلی) */}
       <main className={styles.mainContent}>
-
+        {/* هدر */}
         <header className={styles.header}>
           <h1 className={styles.name}>{memberData.name}</h1>
-          <h2 className={styles.role}>{memberData.role}</h2>
+          <h2 className={styles.title}>{memberData.title}</h2>
           <p className={styles.bio}>{memberData.bio}</p>
         </header>
 
+        {/* آمار */}
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>آمار حرفه‌ای</h3>
           <div className={styles.statsGrid}>
-            {aboutStats.map((stat, i) => (
+            {/* 👈 FIX: چک می‌کنیم که aboutStats یک آرایه باشد */}
+            {Array.isArray(aboutStats) && aboutStats.map((stat, i) => (
               <div key={i} className={styles.statItem}>
                 <strong>{stat.value}</strong> <span>{stat.label}</span>
               </div>
@@ -78,10 +91,12 @@ function ResumeTemplate({ memberData }) {
           </div>
         </section>
 
+        {/* پروژه‌ها */}
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>پروژه‌های برجسته</h3>
           <div className={styles.projectsList}>
-            {projects.slice(0, 3).map((proj, i) => (
+            {/* 👈 FIX: چک می‌کنیم که projects یک آرایه باشد */}
+            {Array.isArray(projects) && projects.slice(0, 3).map((proj, i) => (
               <div key={i} className={styles.projectItem}>
                 <div className={styles.projectHeader}>
                   <h4>{proj.title}</h4>
@@ -95,13 +110,13 @@ function ResumeTemplate({ memberData }) {
           </div>
         </section>
 
+        {/* درباره من */}
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>درباره من</h3>
           <p className={styles.longBio}>
             {t('about.desc1')} {t('about.desc2')}
           </p>
         </section>
-
       </main>
     </div>
   );

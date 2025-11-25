@@ -39,7 +39,7 @@ function Header() {
             {/* لینک‌ها همیشه ثابت هستند */}
             <li><a href="#about" onClick={() => setIsMenuOpen(false)}>{t('header.nav.about')}</a></li>
             <li><a href="#services" onClick={() => setIsMenuOpen(false)}>{t('header.nav.services')}</a></li>
-            <li><a href="#code-showcase" onClick={() => setIsMenuOpen(false)}>معماری کد</a></li>
+            <li><a href="#code-showcase" onClick={() => setIsMenuOpen(false)}>{t('skills.title')}</a></li>
             <li><a href="#projects" onClick={() => setIsMenuOpen(false)}>{t('header.nav.projects')}</a></li>
             <li><a href="#contact" onClick={() => setIsMenuOpen(false)}>{t('header.nav.contact')}</a></li>
           </ul>

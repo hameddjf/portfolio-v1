@@ -48,7 +48,7 @@ function App() {
               <Suspense fallback={<LoadingSpinner />}>
                 <Hero />
                 <Skills />
-                <CodeShowcase /> {/* 👈 اضافه کردن بخش جدید */}
+                <CodeShowcase />
                 <Projects />
                 <About />
                 <ContactForm />

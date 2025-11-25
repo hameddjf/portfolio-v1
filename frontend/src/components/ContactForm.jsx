@@ -69,7 +69,7 @@ function ContactForm() {
               <div className={styles.infoItem}>
                 <div className={styles.iconCircle}><FontAwesomeIcon icon={faEnvelope} /></div>
                 <div>
-                  <span className={styles.label}>ایمیل</span>
+                  <span className={styles.label}>{t('contact.info.emailLabel')}</span>
                   <a href="mailto:hamed@example.com" className={styles.value}>hamed@example.com</a>
                 </div>
               </div>

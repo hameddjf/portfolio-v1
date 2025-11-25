@@ -4,20 +4,26 @@ import React, { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDatabase, faCheck, faCopy, faTerminal } from '@fortawesome/free-solid-svg-icons';
+import { faDatabase, faCheck, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { faReact, faPython } from '@fortawesome/free-brands-svg-icons';
 import styles from './CodeShowcase.module.css';
 import FadeInOnScroll from './FadeInOnScroll';
+import { useTranslation } from 'react-i18next'; // هوک ترجمه
 
-const codeSnippets = [
-  {
-    id: 'frontend',
-    title: t('codeShowcase.snippets.frontend.title'),
-    icon: faReact,
-    language: 'jsx',
-    color: '#61DAFB',
-    description: t('codeShowcase.snippets.frontend.desc'),
-    code: `const ProjectCard = ({ project }) => {
+function CodeShowcase() {
+  const { t } = useTranslation(); // 1. دریافت تابع ترجمه
+  const [copiedId, setCopiedId] = useState(null);
+
+  // 2. تعریف داده‌ها در داخل کامپوننت (چون به t نیاز داریم)
+  const codeSnippets = [
+    {
+      id: 'frontend',
+      title: t('codeShowcase.snippets.frontend.title'), // استفاده از ترجمه
+      icon: faReact,
+      language: 'jsx',
+      color: '#61DAFB',
+      description: t('codeShowcase.snippets.frontend.desc'), // استفاده از ترجمه
+      code: `const ProjectCard = ({ project }) => {
   return (
     <motion.div 
       className={styles.card}
@@ -30,15 +36,15 @@ const codeSnippets = [
     </motion.div>
   );
 };`
-  },
-  {
-    id: 'backend',
-    title: 'views.py',
-    icon: faPython,
-    language: 'python',
-    color: '#FFD43B',
-    description: 'بهینه‌سازی کوئری‌های ORM برای پرفورمنس بالا',
-    code: `class ProjectViewSet(viewsets.ModelViewSet):
+    },
+    {
+      id: 'backend',
+      title: t('codeShowcase.snippets.backend.title'),
+      icon: faPython,
+      language: 'python',
+      color: '#FFD43B',
+      description: t('codeShowcase.snippets.backend.desc'),
+      code: `class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.select_related('category')
     permission_classes = [IsAuthenticated]
 
@@ -48,15 +54,15 @@ const codeSnippets = [
         project.likes += 1
         project.save()
         return Response({'status': 'liked'})`
-  },
-  {
-    id: 'database',
-    title: 'models.py',
-    icon: faDatabase,
-    language: 'python',
-    color: '#336791',
-    description: 'طراحی مدل دیتابیس مقیاس‌پذیر در PostgreSQL',
-    code: `class Project(models.Model):
+    },
+    {
+      id: 'database',
+      title: t('codeShowcase.snippets.database.title'),
+      icon: faDatabase,
+      language: 'python',
+      color: '#336791',
+      description: t('codeShowcase.snippets.database.desc'),
+      code: `class Project(models.Model):
     title = models.CharField(db_index=True)
     slug = models.SlugField(unique=True)
     tech_stack = ArrayField(models.CharField(max_length=50))
@@ -64,11 +70,8 @@ const codeSnippets = [
     class Meta:
         ordering = ['-created_at']
         indexes = [models.Index(fields=['slug'])]`
-  }
-];
-
-function CodeShowcase() {
-  const [copiedId, setCopiedId] = useState(null);
+    }
+  ];
 
   const handleCopy = (code, id) => {
     navigator.clipboard.writeText(code);
@@ -89,7 +92,6 @@ function CodeShowcase() {
             <FadeInOnScroll key={snippet.id} className={styles.scrollWrapper}>
               <div className={`${styles.codeBlock} ${index % 2 === 0 ? styles.left : styles.right}`}>
 
-                {/* توضیحات کنار کد */}
                 <div className={styles.descriptionBox}>
                   <div className={styles.iconCircle} style={{ color: snippet.color, borderColor: snippet.color }}>
                     <FontAwesomeIcon icon={snippet.icon} />
@@ -98,7 +100,6 @@ function CodeShowcase() {
                   <p>{snippet.description}</p>
                 </div>
 
-                {/* پنجره کد */}
                 <div className={styles.codeWindow}>
                   <div className={styles.windowHeader}>
                     <div className={styles.dots}>

@@ -69,6 +69,20 @@
         "iconName": "faServer",
         "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
         "link": "#"
+      },
+      {
+        "id": 2,
+        "title": "Event Management System",
+        "shortDescription": "Comprehensive platform for event booking.",
+        "longDescription": "A complete system...",
+        "technologies": [
+          "Django",
+          "React",
+          "PostgreSQL"
+        ],
+        "iconName": "faServer",
+        "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        "link": "#"
       }
     ]
   },

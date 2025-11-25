@@ -1,141 +1,161 @@
-/* src/components/ProjectCard.module.css (نسخه کامپکت) */
+/* src/components/ProjectCard.module.css */
 
 .projectCard {
-  background: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  /* شعاع کمتر */
+  position: relative;
+  background: rgba(15, 23, 42, 0.8);
+  /* خیلی تیره و شیک */
+  backdrop-filter: blur(16px);
+  /* مات‌کننده قوی */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* حاشیه خیلی ظریف */
+  border-radius: 24px;
   overflow: hidden;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
+  height: 100%;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+/* هاور افکت: کارت بالا میاد و دورش نئونی میشه */
 .projectCard:hover {
-  transform: translateY(-5px);
-  border-color: var(--color-primary);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  border-color: rgba(97, 218, 251, 0.5);
+  /* آبی ریکت */
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.5),
+    0 10px 10px -5px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(97, 218, 251, 0.15);
+  /* درخشش نئون */
 }
 
-/* هدر کارت (کوچک‌تر شده) */
-.cardHeader {
-  height: 140px;
-  /* کاهش ارتفاع از 200 به 140 */
+/* --- تنظیمات عکس (رفع مشکل سایز) --- */
+.imageContainer {
+  width: 100%;
+  height: 220px;
+  /* 👈 ارتفاع ثابت: این مشکل رو حل میکنه */
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* هرچی بیرون زد رو نشون نده */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.iconWrapper {
-  width: 70px;
-  /* کوچک‌تر */
-  height: 70px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  z-index: 2;
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 👈 جادو اینجاست: عکس رو فیت میکنه بدون دفرمه شدن */
+  object-position: center center;
+  /* مرکز عکس رو نشون میده */
+  transition: transform 0.7s ease;
 }
 
-.projectIcon {
-  font-size: 2rem;
-  /* کوچک‌تر */
-  color: var(--color-primary);
+.projectCard:hover .projectImage {
+  transform: scale(1.1);
+  /* زوم نرم هنگام هاور */
 }
 
-/* بدنه کارت */
+/* لایه تاریک روی عکس برای خوانایی بهتر */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent 60%);
+  opacity: 0.6;
+}
+
+/* --- محتوای متنی --- */
 .cardBody {
-  padding: 20px;
-  /* کاهش پدینگ */
+  padding: 24px;
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .projectTitle {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
+  color: #f8fafc;
   margin-bottom: 10px;
-  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
 }
 
 .projectDescription {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  color: #94a3b8;
+  /* خاکستری مات */
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   flex-grow: 1;
-  /* پر کردن فضای خالی */
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  /* محدود کردن به 3 خط */
+  /* محدودیت ۳ خط */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* تگ‌ها (فشرده‌تر) */
+/* --- تگ‌های تکنولوژی --- */
 .techStack {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .techBadge {
   font-size: 0.75rem;
-  padding: 4px 10px;
-  background: var(--color-background-alt);
-  color: var(--color-text-secondary);
-  border-radius: 6px;
-  border: 1px solid var(--color-border);
+  font-weight: 600;
+  padding: 6px 12px;
+  background: rgba(56, 189, 248, 0.1);
+  /* آبی خیلی کمرنگ */
+  color: #38bdf8;
+  /* آبی روشن */
+  border-radius: 100px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
 }
 
-/* دکمه‌ها (فشرده‌تر) */
+/* --- دکمه‌ها --- */
 .cardActions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  margin-top: auto;
 }
 
 .btnDetails,
 .btnLink {
   flex: 1;
-  padding: 10px;
-  font-size: 0.85rem;
-  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  text-decoration: none;
 }
 
 .btnDetails {
-  background: var(--color-primary-light);
-  color: var(--color-primary);
+  background: #38bdf8;
+  color: #0f172a;
+  /* متن تیره روی دکمه روشن */
   border: none;
 }
 
 .btnDetails:hover {
-  background: var(--color-primary);
-  color: white;
+  background: #0ea5e9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
 }
 
 .btnLink {
-  border: 1px solid var(--color-border);
-  color: var(--color-text-secondary);
-  text-decoration: none;
+  background: transparent;
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .btnLink:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #fff;
 }

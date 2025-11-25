@@ -634,3 +634,31 @@
 [data-theme='dark'] .modalBody::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #5BC0DE, #2F9ACF);
 }
+
+/*  */
+.imageContainer {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modalTitleOverlay {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  /* یا left بسته به RTL/LTR */
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  z-index: 3;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 15px;
+  border-radius: 8px;
+}

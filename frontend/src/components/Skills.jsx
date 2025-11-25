@@ -39,8 +39,8 @@ function Services() {
     <section id="services" className={styles.skillsSection}>
       <div className="container">
         <FadeInOnScroll>
-          <h2 className={styles.sectionTitle}>تخصص‌های فنی</h2>
-          <p className={styles.subtitle}>جعبه ابزار کامل برای توسعه محصول از صفر تا صد</p>
+          <h2 className={styles.sectionTitle}>{t('skills.title')}</h2>
+          <p className={styles.subtitle}>{t('skills.subtitle')}</p>
         </FadeInOnScroll>
 
         {/* شبکه بنتو: همه مهارت‌ها در یک نگاه */}

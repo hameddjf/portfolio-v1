@@ -1,15 +1,24 @@
-// src/services/api.js
 import axios from 'axios';
 
-// آدرس پایه بک‌اند جنگو
+// آدرس پایه (در حالت لوکال)
 const API_URL = 'http://127.0.0.1:8000/api';
 
-// ساخت یک نمونه از Axios با تنظیمات پیش‌فرض
 const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+// 👇 تابع جدید برای دریافت پروژه‌ها
+export const getProjects = async () => {
+  try {
+    const response = await api.get('/projects/');
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    return [];
+  }
+};
 
 export default api;
