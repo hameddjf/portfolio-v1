@@ -10,6 +10,8 @@ const api = axios.create({
   },
 });
 
+
+
 // 👇 تابع جدید برای دریافت پروژه‌ها
 export const getProjects = async () => {
   try {
@@ -20,5 +22,13 @@ export const getProjects = async () => {
     return [];
   }
 };
-
+export const getSkills = async () => {
+  try {
+    const response = await api.get('/skils/');
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching skills:", error);
+    return [];
+  }
+};
 export default api;

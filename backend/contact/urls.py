@@ -1,9 +1,9 @@
 # backend/contact/urls.py
+# backend/contact/urls.py
 
-from rest_framework.routers import DefaultRouter
-from .views import ContactMessageViewSet
+from django.urls import path
+from .views import ContactFormAPIView
 
-router = DefaultRouter()
-router.register(r'contact', ContactMessageViewSet)
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('contact/', ContactFormAPIView.as_view(), name='contact-form-submit'),
+]

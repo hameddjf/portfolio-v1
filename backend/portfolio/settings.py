@@ -43,15 +43,20 @@ INSTALLED_APPS = [
     
     'contact',
     "build_project",
+    "skills",
     
     'rest_framework',
     'corsheaders',
+    'drf_spectacular',
+    'django_cleanup.apps.CleanupConfig',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
-    'whitenoise.middleware.WhiteNoiseMiddleware', 
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     
@@ -146,12 +151,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
     "http://localhost:5173", # پورت پیش‌فرض Vite
-    "http://localhost:3000", # پورت جایگزین احتمالی
+    "http://127.0.0.1:3000",
 ]
-
+CORS_ALLOW_ALL_ORIGINS = True
 # //// تنظیمات Django REST Framework //// 
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny', # در حالت توسعه مهم است
+    ],
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle', # برای کاربران ناشناس
         'rest_framework.throttling.UserRateThrottle'  # برای کاربران لاگین شده
@@ -193,15 +206,33 @@ if not DEBUG:
 # ///// email settings ////
 # تنظیمات ایمیل (فعلاً چاپ در کنسول برای تست)
 if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    # تنظیمات واقعی برای سرور (بعداً پر می‌کنیم)
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com')
-    EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
-    EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
-    EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
-    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')    
+    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    INTERNAL_IPS = [
+    "127.0.0.1",
+    
+]
 
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_USE_SSL = config('EMAIL_USE_SSL', cast=bool, default=False) 
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+
+# ایمیل مقصد
+CONTACT_FORM_RECEIVER_EMAIL = config('CONTACT_FORM_RECEIVER_EMAIL', default=config('EMAIL_HOST_USER'))
+
+# ///// spectacular settings /////
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Hamed Moradi Portfolio API',
+    'DESCRIPTION': 'Documentation for the Django Rest Framework Backend of the Full-stack Portfolio.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SERVER_URLS': [
+        {'url': 'http://127.0.0.1:8000', 'description': 'Development Server'},
+    ],
+}
 
 # //// end of settings ////

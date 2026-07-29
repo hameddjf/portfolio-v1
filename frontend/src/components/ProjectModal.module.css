@@ -636,29 +636,43 @@
 }
 
 /*  */
-.imageContainer {
+.modalImageContainer {
   width: 100%;
-  height: 200px;
-  overflow: hidden;
+  height: 300px;
+  /* 👈 ارتفاع ثابت: این جلوی بزرگ شدن بیش از حد را می‌گیرد */
+  position: relative;
+  background-color: #0f172a;
+  /* رنگ تیره برای فضای خالی */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.projectImage {
+/* خود تصویر */
+.modalImage {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  /* 👈 عکس کامل دیده شود و بریده نشود */
+  display: block;
 }
 
+/* عنوان روی عکس */
 .modalTitleOverlay {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  /* یا left بسته به RTL/LTR */
+  background: rgba(0, 0, 0, 0.6);
   color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  z-index: 3;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  background: rgba(0, 0, 0, 0.5);
-  padding: 5px 15px;
+  padding: 8px 16px;
   border-radius: 8px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  backdrop-filter: blur(4px);
+}
+
+/* ریسپانسیو برای موبایل */
+@media (max-width: 768px) {
+  .modalImageContainer {
+    height: 200px;
+    /* در موبایل کوتاه‌تر شود */
+  }
 }
